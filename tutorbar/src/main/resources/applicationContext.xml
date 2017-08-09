@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!-- 自动扫描与装配bean -->
+    <context:component-scan base-package="com"/>
+    <!--加载数据资源属性文件 -->
+
+    <bean id="propertyConfigurer"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:jdbc.properties"/>
+    </bean>
+    <!-- dbcp配置 -->
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="${driver}"/>
+        <property name="url" value="${url}"/>
+        <property name="username" value="${username}"/>
+        <property name="password" value="${password}"/>
+
+        <!--maxActive: 最大连接数量-->
+        <property name="maxActive" value="${maxActive}"/>
+        <!--minIdle: 最小空闲连接-->
+        <property name="minIdle" value="${minIdle}"/>
+        <!--maxIdle: 最大空闲连接-->
+        <property name="maxIdle" value="${maxIdle}"/>
+        <!--initialSize: 初始化连接-->
+        <property name="initialSize" value="${initialSize}"/>
+        <!-- 连接被泄露时是否打印 -->
+        <property name="logAbandoned" value="${logAbandoned}"/>
+        <!--removeAbandoned: 是否自动回收超时连接-->
+        <property name="removeAbandoned" value="${removeAbandoned}"/>
+        <!--removeAbandonedTimeout: 超时时间(以秒数为单位)-->
+        <property name="removeAbandonedTimeout" value="${removeAbandonedTimeout}"/>
+        <!--maxWait: 超时等待时间以毫秒为单位 1000等于60秒-->
+        <property name="maxWait" value="${maxWait}"/>
+        <!-- 在空闲连接回收器线程运行期间休眠的时间值,以毫秒为单位. -->
+        <property name="timeBetweenEvictionRunsMillis" value="${timeBetweenEvictionRunsMillis}"/>
+        <!--  在每次空闲连接回收器线程(如果有)运行时检查的连接数量 -->
+        <property name="numTestsPerEvictionRun" value="${numTestsPerEvictionRun}"/>
+        <!-- 1000 * 60 * 30  连接在池中保持空闲而不被空闲连接回收器线程-->
+        <property name="minEvictableIdleTimeMillis" value="${minEvictableIdleTimeMillis}"/>
+
+    </bean>
+
+
+    <!--配置sessionfactory-->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+
+        <property name="configLocation" value="classpath:hibernate.cfg.xml"/>
+        <property name="dataSource">
+            <ref local="dataSource"/>
+        </property>
+
+        <!--
+        hibernate的相关配置
+                <property name="hibernateProperties">
+                    <props>
+
+                        <prop key="hibernate.dialect">
+                            org.hibernate.dialect.MySQLDialect
+                        </prop>
+
+                        <prop key="hibernate.hbm2ddl.auto">update</prop>
+
+                        <prop key="hibernate.show_sql">true</prop>
+                        <prop key="hibernate.format_sql">true</prop>
+                        <prop key="hibernate.use_sql_comments">false</prop>
+                    </props>
+                </property>
+        -->
+        <!--自动扫描实体 -->
+        <property name="packagesToScan" value="com.model"/>
+
+        <!--自动扫描映射文件-->
+        <property name="mappingLocations" value="classpath:mapper/*.hbm.xml"/>
+
+    </bean>
+
+    <!--事务管理-->
+    <!-- 用注解来实现事务管理 -->
+    <!--hibernate事务管理-->
+    <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <!--配置事务属性-->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="get*" read-only="true"/>
+            <!-- 对add,update,delete 开头的方法进行事务管理,只要有异常就回滚 -->
+            <tx:method name="add*" propagation="REQUIRED" rollback-for="java.lang.Throwable"/>
+            <tx:method name="delete*" propagation="REQUIRED" rollback-for="java.lang.Throwable"/>
+            <tx:method name="update*" propagation="REQUIRED" rollback-for="java.lang.Throwable"/>
+            <tx:method name="find*" propagation="REQUIRED" rollback-for="java.lang.Throwable"/>
+            <!--  对其他方法 使用默认的事务管理  -->
+            <tx:method name="*"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <!--aop配置-->
+    <aop:config>
+        <aop:pointcut id="pointcut" expression="execution(* com.serviceImpl.*.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="pointcut"/>
+    </aop:config>
+
+</beans>
