@@ -19,7 +19,7 @@ public class SessionMannager {
     private static ThreadLocal session = new ThreadLocal();
 
     @Resource
-    SessionFactory sessionFactory;
+    private SessionFactory sessionFactory;
 
     public Session getCurrentSession() throws HibernateException {
         Session currentSession = cast(session.get());

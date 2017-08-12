@@ -21,7 +21,7 @@ public class Subject {
     private Integer fee;
 
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @Cascade(CascadeType.ALL)
     @JoinColumn(name = "tid", unique = true)
     private Teacher teacher;

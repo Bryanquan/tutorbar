@@ -12,15 +12,15 @@ import java.util.*;
  */
 public class AbstractPage<E> implements Page<E>{
 
-    public static  final  int DEFAULT_PAGE_SIZE=10;
+    private static  final  int DEFAULT_PAGE_SIZE=10;
 
-    public static final   int DEFAULT_FIRST_PAGENUM=1;
+    private static final   int DEFAULT_FIRST_PAGENUM=1;
 
-    protected  int pageSize=DEFAULT_PAGE_SIZE;
+    protected int pageSize=DEFAULT_PAGE_SIZE;
 
-    protected int pageNum=DEFAULT_FIRST_PAGENUM;
+    private int pageNum=DEFAULT_FIRST_PAGENUM;
 
-    protected  List<E> items;
+    private   List<E> items;
 
     public void setItems(Collection<E> items) {
         if (items==null) items=Collections.emptyList();
@@ -39,10 +39,6 @@ public class AbstractPage<E> implements Page<E>{
         return DEFAULT_FIRST_PAGENUM;
     }
 
-    /**
-     *
-     * @return the start number of each page
-     */
     public int getStartIndex()
     {
         return (getPageNum()-1)*pageSize;

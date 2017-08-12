@@ -8,15 +8,14 @@ import javax.annotation.Resource;
 @Namespace(value = "admin")
 @Results({@Result(name = "admin_list",location = "/Mannager/Admin/admin_list.jsp"),
         @Result(name = "failure",location = "/Mannager/Admin/failure.jsp")})
-public class adminAction
-{
+public class adminAction {
     @Resource
     private AdminManager adminManager;
+
     @Action(value = "/admin_list")
     public String list()
     {
-         System.out.println(adminManager.list());
-         System.out.println("admin");
+
          return "admin_list";
     }
 }

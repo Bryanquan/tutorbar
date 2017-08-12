@@ -43,14 +43,13 @@ public class AdminDaoImpl implements AdminDao{
         Session  session=sessionFactory.getCurrentSession();
         String hql = "UPDATE Admin admin set userpwd = :entity.userpwd, login_times=:entity.login_times," +
                 " last_login=:entity.last_login,status=:entity.status,  jurisdiction=:entity.jurisdiction, role=:entity.role WHERE id = :entity.id" ;
-        Query query=session.createQuery(hql);
-
+        session.createQuery(hql);
     }
 
     public void delete(Admin entity) {
          Session session=sessionFactory.getCurrentSession();
          String sql="delete from Admin admin "+"where admin.id=:entity.id";
-         Query query=session.createQuery(sql);
+         session.createQuery(sql);
     }
 
     public List<Admin> pagination(Pagination<Admin> pagination) {

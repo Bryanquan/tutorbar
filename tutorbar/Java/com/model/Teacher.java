@@ -1,10 +1,7 @@
 package com.model;
 
-import org.hibernate.annotations.Fetch;
-
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -26,7 +23,7 @@ public class Teacher {
      * one has many reference
      */
     @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    @JoinColumn(name = "tid")
+    @JoinColumn(name = "sid")
     private Set<Subject> subject;
 
     private String name;
