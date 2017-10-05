@@ -15,7 +15,6 @@ public class adminAction {
     @Action(value = "/admin_list")
     public String list()
     {
-
          return "admin_list";
     }
 }
