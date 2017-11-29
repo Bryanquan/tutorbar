@@ -1,11 +1,9 @@
 package com.model;
 
-import org.hibernate.annotations.*;
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
 import javax.persistence.*;
-import javax.persistence.Entity;
-import javax.persistence.Table;
 
 @Entity
 @Table(name = "subject")
@@ -15,7 +13,7 @@ public class Subject {
     @GeneratedValue
     private Integer sid;
 
-    private String  name;
+    private String name;
     private Integer grade;
 
     private Integer fee;
@@ -71,7 +69,7 @@ public class Subject {
         this.name = name;
     }
 
-    public Subject(){
+    public Subject() {
 
     }
 

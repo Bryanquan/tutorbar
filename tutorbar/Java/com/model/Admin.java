@@ -1,15 +1,16 @@
 package com.model;
+
 import java.util.Date;
-public class Admin
-{
+
+public class Admin {
     private Integer id;
-    private String  username;
-    private String  userpwd;
+    private String username;
+    private String userpwd;
     private Integer login_times;
-    private Date    last_login;
+    private Date last_login;
     private Integer status;
-    private String  jurisdiction;
-    private String  role;
+    private String jurisdiction;
+    private String role;
 
     public Integer getId() {
         return id;

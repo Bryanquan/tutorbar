@@ -1,8 +1,10 @@
 package com.model;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
 @Entity
 @Table(name = "fee")
 public class Fee {
@@ -58,8 +60,7 @@ public class Fee {
         this.fee_level = fee_level;
     }
 
-    public Fee()
-    {
+    public Fee() {
 
     }
 }

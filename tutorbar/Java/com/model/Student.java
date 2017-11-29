@@ -23,14 +23,14 @@ public class Student {
     private Integer grade;
     private Integer frequency;
     private Integer classtime;
-    private String  subject;
+    private String subject;
     private String description;
     private Integer t_sex;
-    private String  t_demand;
+    private String t_demand;
     private Integer fee;
-    private Date    register_time;
-    private Date    modify_time;
-    private Date    last_logintime;
+    private Date register_time;
+    private Date modify_time;
+    private Date last_logintime;
     private Integer login_times;
 
     public Integer getSid() {
