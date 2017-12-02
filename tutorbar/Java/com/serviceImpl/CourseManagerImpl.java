@@ -16,11 +16,11 @@ public class CourseManagerImpl implements CourseManager {
     private CourseDao courseDao;
 
     public Course findOne(String id) {
-        return courseDao.getById(id);
+        return courseDao.findOne(id);
     }
 
     public Course findOne(Integer id) {
-        return courseDao.getById(id);
+        return courseDao.findOne(id);
     }
 
     public Integer getCourseAmount() {
