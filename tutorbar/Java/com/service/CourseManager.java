@@ -4,9 +4,9 @@ import java.util.List;
 public interface CourseManager {
     List<Course> list();
     
-    Course getById(String id);
+    Course findOne(String id);
 
-    Course getById(Integer id);
+    Course findOne(Integer id);
 
     Integer getCourseAmount();
 

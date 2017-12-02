@@ -8,11 +8,11 @@ import java.util.List;
 public interface AdminManager {
     List<Admin> list();
 
-    Admin getId(Integer id);
+    Admin findOne(Integer id);
 
-    Admin getId(String id);
+    Admin findOne(String id);
 
-    Admin getByUsername(String username);
+    Admin findByUsername(String username);
 
     void add(Admin admin);
 

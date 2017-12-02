@@ -4,14 +4,15 @@ import com.core.page.Pagination;
 import com.model.Admin;
 
 import java.util.List;
+
 public interface AdminDao {
     List<Admin> list();
 
-    Admin getId(Integer id);
+    Admin findOne(Integer id);
 
-    Admin getId(String id);
+    Admin findOne(String id);
 
-    Admin getByUsername(String username);
+    Admin findByUsername(String username);
 
     void add(Admin entity);
 

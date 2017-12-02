@@ -8,10 +8,6 @@ import java.util.List;
 public interface CourseDao {
     List<Course> list();
 
-    Course getById(String id);
-
-    Course getById(Integer id);
-
     Course findByCourseName(String courseName);
 
     Course findOne(String id);

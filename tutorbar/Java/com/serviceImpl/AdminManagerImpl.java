@@ -20,16 +20,16 @@ public class AdminManagerImpl implements AdminManager {
         return adminDao.list();
     }
 
-    public Admin getId(Integer id) {
-        return adminDao.getId(id);
+    public Admin findOne(Integer id) {
+        return adminDao.findOne(id);
     }
 
-    public Admin getId(String id) {
-        return adminDao.getId(id);
+    public Admin findOne(String id) {
+        return adminDao.findOne(id);
     }
 
-    public Admin getByUsername(String username) {
-        return adminDao.getByUsername(username);
+    public Admin findByUsername(String username) {
+        return adminDao.findByUsername(username);
     }
 
     public void add(Admin entity) {

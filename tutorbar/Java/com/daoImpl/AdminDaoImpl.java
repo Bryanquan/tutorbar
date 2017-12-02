@@ -17,19 +17,19 @@ public class AdminDaoImpl implements AdminDao {
     @Resource
     private SessionFactory sessionFactory;
 
-    public Admin getId(Integer id) {
+    public Admin findOne(Integer id) {
         Session session = sessionFactory.getCurrentSession();
         Admin admin = (Admin) session.load(Admin.class, id);
         return admin;
     }
 
-    public Admin getId(String id) {
+    public Admin findOne(String id) {
         Session session = sessionFactory.getCurrentSession();
         Admin admin = (Admin) session.load(Admin.class, id);
         return admin;
     }
 
-    public Admin getByUsername(String username) {
+    public Admin findByUsername(String username) {
         Session session = sessionFactory.getCurrentSession();
         String hql = "From Admin admin where admin.username =:username";
         Query query = session.createQuery(hql);
