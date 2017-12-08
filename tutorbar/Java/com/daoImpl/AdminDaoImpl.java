@@ -66,7 +66,7 @@ public class AdminDaoImpl implements AdminDao {
         return query.list();
     }
 
-    public List<Admin> list() {
+    public List<Admin> findAll() {
         String hql = "FROM Admin";
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery(hql);

@@ -19,13 +19,6 @@ public class CourseDaoImpl implements CourseDao {
     @Resource
     private SessionFactory sessionFactory;
 
-    public List<Course> list() {
-        Session session = sessionFactory.getCurrentSession();
-        String hql = "FROM Course ";
-        Query query = session.createQuery(hql);
-        return query.list();
-    }
-
     public Integer getCourseAmount() {
         Session session = sessionFactory.getCurrentSession();
         String hql = "select count(*) from Course";

@@ -39,7 +39,7 @@ public class CourseManagerImpl implements CourseManager {
         courseDao.update(courseentity);
     }
 
-    public List<Course> list() {
-        return courseDao.list();
+    public List<Course> findAll() {
+        return courseDao.findAll();
     }
 }

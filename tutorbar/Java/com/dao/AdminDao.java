@@ -6,7 +6,7 @@ import com.model.Admin;
 import java.util.List;
 
 public interface AdminDao {
-    List<Admin> list();
+    List<Admin> findAll();
 
     Admin findOne(Integer id);
 

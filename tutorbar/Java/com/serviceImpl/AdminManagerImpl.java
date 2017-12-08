@@ -16,8 +16,8 @@ public class AdminManagerImpl implements AdminManager {
     @Resource
     private AdminDao adminDao;
 
-    public List<Admin> list() {
-        return adminDao.list();
+    public List<Admin> findAll() {
+        return adminDao.findAll();
     }
 
     public Admin findOne(Integer id) {

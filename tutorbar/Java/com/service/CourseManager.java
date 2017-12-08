@@ -2,7 +2,7 @@ package com.service;
 import com.model.Course;
 import java.util.List;
 public interface CourseManager {
-    List<Course> list();
+    List<Course> findAll();
     
     Course findOne(String id);
 

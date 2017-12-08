@@ -6,15 +6,13 @@ import com.model.Course;
 import java.util.List;
 
 public interface CourseDao {
-    List<Course> list();
+    List<Course> findAll();
 
     Course findByCourseName(String courseName);
 
     Course findOne(String id);
 
     Course findOne(Integer id);
-
-    List<Course> findAll();
 
     Integer getCourseAmount();
 
