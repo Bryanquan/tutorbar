@@ -17,7 +17,7 @@ public class courseAction {
 
     @Action(value = "/course_list")
     public String list() {
-        System.out.println(courseManager.list());
+        System.out.println(courseManager.findAll());
         System.out.println(courseManager.getCourseAmount());
         System.out.println("course");
         return "list";
